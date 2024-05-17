@@ -1,13 +1,16 @@
-import React, { useEffect } from 'react'
+import React, { useState } from 'react'
 import { GoStarFill as Star } from "react-icons/go";
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import Loader from './Loader';
 
 const Card = ({ id, type, title, releaseDate, voteAverage, posterPath, genres, genreArray }) => {
 
     const navigate = useNavigate()    
 
     const {theme} = useSelector(state => state.theme)
+
+    const [isLoading, setIsLoading] = useState(true)
 
     // convert genre id to genre name
     const convertGenre = genreId => {
@@ -18,8 +21,9 @@ const Card = ({ id, type, title, releaseDate, voteAverage, posterPath, genres, g
     return (
         <div className="card" onClick={() => navigate(`/detail/${type}/${id}`)}>
             {/* card image */}
+            {isLoading && <Loader />}
             <div className="card-img">
-                <img src={`https://www.themoviedb.org/t/p/w220_and_h330_face/${posterPath})`} />
+                <img src={`https://www.themoviedb.org/t/p/w220_and_h330_face/${posterPath})`} onLoad={() => setIsLoading(false)}/>
             </div>
             <div className="card-img-overlay text-center">
                 {/* genres for media */}

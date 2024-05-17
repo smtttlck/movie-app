@@ -29,14 +29,14 @@ const Pagination = () => {
 
     return (
         <nav className="d-flex justify-content-center">
-            <ul class="pagination pagination-lg pink-border">
+            <ul className="pagination pagination-lg pink-border">
                 {pageNumbers?.map((number, index) => (
                     <li
-                        class={`page-item ${pageNumber == number && "active"}`}
+                        className={`page-item ${pageNumber == number && "active"}`}
                         key={`pagination-${index}`}
                     >
                         <a
-                            class={`page-link pagination-${theme} ${pageNumber != number && "pink"}`}
+                            className={`page-link pagination-${theme} ${pageNumber != number && "pink"}`}
                             href={`/media/${type}/${number}`}
                         >
                             {number}

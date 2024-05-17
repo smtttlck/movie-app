@@ -31,13 +31,13 @@ const MovieCard = ({ data, actors, videoUrl }) => {
     }
 
     return (
-        <div className="movie-card d-lg-flex">
+        <div className="movie-card d-lg-flex w-100 py-2">
             {/* movie poster */}
             <div className="poster w-lg-25 text-center">
                 <img src={`https://www.themoviedb.org/t/p/w220_and_h330_face/${data?.poster_path}`} alt="" />
             </div>
             {/* movie infos */}
-            <div className="text w-lg-75 mx-2">
+            <div className="text w-75 m-auto px-1">
                 <div className="moviecard-header w-100 d-flex justify-content-between">
                     {/* movie name */}
                     <h1 className={`${(theme == "light") ? "pink-shadow" : "pink"} mb-2`}>
@@ -53,7 +53,7 @@ const MovieCard = ({ data, actors, videoUrl }) => {
                 </div>
                 <div className="info d-flex">
                     {/* movie release year */}
-                    <p className={(theme == "light") && "pink"}>
+                    <p className={(theme == "light") ? "pink" : " "}>
                         {((type == "movie") ? data.release_date : data.first_air_date)?.split("-")[0]}
                     </p>
                     {/* genres of the movie */}
@@ -76,12 +76,12 @@ const MovieCard = ({ data, actors, videoUrl }) => {
                     <h5 className={(theme == "light") ? "pink-shadow" : "pink"}>
                         Overview
                     </h5>
-                    <p className={(theme == "light") && "pink"}>
+                    <p className={(theme == "light") ? "pink" : " "}>
                         {data?.overview}
                     </p>
                 </div>
                 {/* actors of the movie */}
-                {actors.length>0 &&
+                {(actors.length > 0) &&
                     <div className="actors">
                         <h5 className={(theme == "light") ? "pink-shadow" : "pink"}>
                             Main actors

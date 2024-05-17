@@ -24,9 +24,8 @@
 .pagination-light {background-color: #fff;}
 .pagination-dark {background-color: #1F2122;}
 
-.pink-border {
-  border: 1px solid var(--pink);
-}
-.white-border {
-  border: 1px solid #fff;
-}
+.pink-border {border: 1px solid var(--pink);}
+.pink-outline {outline: 1px solid var(--pink);}
+
+.white-outline {outline: 1px solid #fff;}
+.white-border {border: 1px solid #fff;}

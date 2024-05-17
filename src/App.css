@@ -23,7 +23,6 @@ p, sub, h1, h2, h3, h4, h5, .btn {
 }
 
 /* Navbar */
-
 .navbar a {
   height: 5rem;
   color: var(--pink);
@@ -70,61 +69,27 @@ p, sub, h1, h2, h3, h4, h5, .btn {
   background-color: var(--pink);
 }
 
+/* Button */
+.btn{
+  width: 150px;
+  height: 40px;
+}
+
 /* Home */
 .banner {
-  background-image: url('banner.png');
   background-size: cover;
   background-position: center;
   height: 400px;
-}
-
-.carousel-header h1 {
-  color: var(--pink) !important;
-  margin-top: 25px;
-}
-.carousel-header .carousel-buttons a {
-  position: relative;
-  width: 17px;
-}
-
-@media (max-width: 767px) {
-  .carousel-inner .carousel-item>div {
-    display: none;
-  }
-
-  .carousel-inner .carousel-item>div:first-child {
-    display: block;
-  }
-}
-
-.carousel-inner .carousel-item.active,
-.carousel-inner .carousel-item-next,
-.carousel-inner .carousel-item-prev {
-  display: flex;
-}
-
-@media (min-width: 768px) {
-
-  .carousel-inner .carousel-item-end.active,
-  .carousel-inner .carousel-item-next {
-    transform: translateX(25%);
-  }
-
-  .carousel-inner .carousel-item-start.active,
-  .carousel-inner .carousel-item-prev {
-    transform: translateX(-25%);
-  }
-}
-
-.carousel-inner .carousel-item-end,
-.carousel-inner .carousel-item-start {
-  transform: translateX(0);
+  text-shadow: 1px 1px 2px var(--red);
 }
 
 /* Card */
 .card {
   border: 1px solid var(--pink);
   overflow: hidden;
+  pointer-events: all;
+  width: 220px;
+  height: 330px;
 }
 .card .card-img img{
   width: 100%;
@@ -169,7 +134,6 @@ p, sub, h1, h2, h3, h4, h5, .btn {
 }
 
 /* Detail */
-
 .moviecard-header svg{
   font-size: 70px;
   color: var(--red);
@@ -179,11 +143,17 @@ p, sub, h1, h2, h3, h4, h5, .btn {
 .small-card{
   cursor: pointer;
 }
+.small-card .info p{  
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 80%; 
+}
+.small-card .info .actor-name{  
+  font-size: 12px;
+  font-style: italic;
+}
 .small-card:hover{
   outline: 3px solid var(--pink);
 }
-.small-card:hover{
-  border: 0;
-}
-
 

@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 import * as api from '../api/Api'
 import { useParams } from 'react-router-dom'
 import MovieCard from '../components/MovieCard'
+import Loader from '../components/Loader'
 
 const Detail = () => {
 
@@ -10,7 +11,7 @@ const Detail = () => {
 
     const { type, id } = useParams()
 
-    const [data, setData] = useState([])
+    const [data, setData] = useState(null)
     const [actors, setActors] = useState([])
     const [videoUrl, setVideoUrl] = useState()
 
@@ -27,17 +28,19 @@ const Detail = () => {
         // data fetch for actors
         api.fetchData((type == "movie") ? "movieCredits" : "tvCredits", id)
             .then(data => setActors(data.cast))
-        
+
     }, [type, id])
 
     return (
         <div className={`page container bg-${theme} d-flex`}>
 
-            <MovieCard 
-                data={data}
-                actors={actors}
-                videoUrl={videoUrl}
-            />
+            {(data == null) ? <Loader /> :
+                <MovieCard
+                    data={data}
+                    actors={actors}
+                    videoUrl={videoUrl}
+                />
+            }
 
         </div>
     )

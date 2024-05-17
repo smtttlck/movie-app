@@ -7,33 +7,33 @@ const ActorCard = ({ actor, credits }) => {
     const { theme } = useSelector(state => state.theme)
 
     return (
-        <div className="actor-card d-lg-flex">
-            <div className="personal-info w-lg-25 text-center">
+        <div className="actor-card d-lg-flex w-100">
+            <div className="personal-info w-lg-25">
                 {/* actor poster */}
                 <img src={`https://www.themoviedb.org/t/p/w220_and_h330_face/${actor?.profile_path}`} alt="" />
                 {/* actor's gender */}
                 <h5 className={`${(theme == "light") ? "pink-shadow" : "pink"} mt-2`}>
                     Gender
                 </h5>
-                <p className={(theme == "light") && "pink"}>
+                <p className={(theme == "light") ? "pink" : " "}>
                     {actor?.gender == 1 ? "Female" : "Male"}
                 </p>
                 {/* actor's birthdat */}
                 <h5 className={`${(theme == "light") ? "pink-shadow" : "pink"}`}>
                     Birthday
                 </h5>
-                <p className={(theme == "light") && "pink"}>
+                <p className={(theme == "light") ? "pink" : " "}>
                     {actor?.birthday}
                 </p>
                 {/* actor's birthplace */}
                 <h5 className={`${(theme == "light") ? "pink-shadow" : "pink"}`}>
                     Place of Birth
                 </h5>
-                <p className={(theme == "light") && "pink"}>
+                <p className={(theme == "light") ? "pink" : " "}>
                     {actor?.place_of_birth}
                 </p>
             </div>
-            <div className="text w-lg-75 mx-2">
+            <div className="text w-75 m-auto px-1">
                 {/* actor's name */}
                 <h1 className={`${(theme == "light") ? "pink-shadow" : "pink"} mb-2`}>
                     {actor?.name}
@@ -43,7 +43,7 @@ const ActorCard = ({ actor, credits }) => {
                     <h5 className={(theme == "light") ? "pink-shadow" : "pink"}>
                         Biography
                     </h5>
-                    <p className={(theme == "light") && "pink"}>
+                    <p className={(theme == "light") ? "pink" : " "}>
                         {actor?.biography}
                     </p>
                 </div>

@@ -22,13 +22,15 @@ const Detail = () => {
                 setData(data)
                 // data fetch for media video
                 api.fetchData(`${type}Video`, data.id)
-                    .then(data => setVideoUrl(data.results[0].key))
+                    .then(data => {
+                        const trailer = data.results.find(movie => movie.type == "Trailer")?.key
+                        setVideoUrl(trailer || data.results[0].key)
+                    })
             })
 
         // data fetch for actors
         api.fetchData((type == "movie") ? "movieCredits" : "tvCredits", id)
             .then(data => setActors(data.cast))
-
     }, [type, id])
 
     return (

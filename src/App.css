@@ -38,27 +38,37 @@ p, sub, h1, h2, h3, h4, h5, .btn {
 .navbar ul li a:hover{
   text-shadow: var(--yellow) 1px 0 10px;
 }
-.navbar .themeChanger {
+.navbar .themeChanger, .navbar .navToggler {
   outline: 1px solid #706c6c;
   width: 30px;
   height: 30px;
   font-size: 20px;
   cursor: pointer;
 }
+nav .nav {
+  opacity: 1 !important;
+}
 
 @media screen and (max-width: 768px) {
   nav .nav {
-    order: 4;
-    display: flex;
+    order: 5;
     flex-direction: column;
     align-items: center;
-    width: 75%;
+    width: 100%;
+    height: 0px;
+    opacity: 0;
+    transition: height 1s ease;
+    overflow: hidden;
   }
   nav .nav li{  
     outline: 1px solid var(--pink);
     text-align: center;
     margin: 5px auto;
     border-radius: 15px;
+  }
+  nav .navToggler{
+    display: flex !important;
+    order: 4;
   }
   
 }

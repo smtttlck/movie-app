@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 import * as api from '../api/Api'
 import { useParams } from 'react-router-dom'
 import ActorCard from '../components/ActorCard'
+import Loader from '../components/Loader'
 
 const Actor = () => {
 
@@ -10,7 +11,7 @@ const Actor = () => {
 
     const { id } = useParams()
 
-    const [actor, setActor] = useState([])
+    const [actor, setActor] = useState(null)
     const [credits, setCredits] = useState([])
 
     useEffect(() => {
@@ -26,12 +27,13 @@ const Actor = () => {
 
     return (
         <div className={`page container bg-${theme} d-flex`}>
-            
-            <ActorCard 
-                actor={actor}
-                credits={credits}
-            />
 
+            {(actor == null) ? <Loader /> :
+                <ActorCard
+                    actor={actor}
+                    credits={credits}
+                />
+            }
         </div>
     )
 }

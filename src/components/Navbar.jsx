@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { BiSolidCameraMovie as CameraIcon } from "react-icons/bi"
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { BiSun as Sun, BiMoon as Moon } from "react-icons/bi"
+import { BsList } from "react-icons/bs";
 import { changeTheme } from '../redux/features/theme'
 
 const Navbar = () => {
@@ -12,6 +13,14 @@ const Navbar = () => {
     const dispatch = useDispatch()
 
     const navigate = useNavigate()
+
+    const navRef = useRef()
+
+    const navMenuControl = () => {
+        // for toggle effect
+        navRef.current.style.opacity = (navRef.current.style.opacity == "1") ? "0" : "1"
+        navRef.current.style.height = (navRef.current.style.height == "50px") ? "0px" : "50px"        
+    }
 
     useEffect(() => {
         // body color according to theme
@@ -39,7 +48,14 @@ const Navbar = () => {
                     />
                 </div>
                 {/* nav links */}
-                <ul className="nav">
+                <span 
+                    className="navToggler d-none align-items-center justify-content-center rounded" 
+                    style={{color: (theme == "light") ? "#000" : "#fff"}}
+                    onClick={() => navMenuControl()}
+                >
+                    {<BsList />}
+                </span>
+                <ul className="nav" ref={navRef}>
                     <li>
                         <Link to="/">Home</Link>
                     </li>
@@ -53,7 +69,7 @@ const Navbar = () => {
                         <Link to="/myList">My List</Link>
                     </li>
                 </ul>
-                {/* theme button */}
+                {/* theme button */} 
                 <span 
                     className="themeChanger d-flex align-items-center justify-content-center rounded" 
                     style={{color: (theme == "light") ? "#000" : "#fff"}}

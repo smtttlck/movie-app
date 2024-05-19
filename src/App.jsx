@@ -1,13 +1,9 @@
 import React from 'react'
 import './App.css'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import Home from './pages/Home'
+import * as ROUTES from './constants/routes'
 import Navbar from './components/Navbar'
-import Media from './pages/Media'
-import Detail from './pages/Detail'
-import Actor from './pages/Actor'
-import Search from './pages/Search'
-import MyList from './pages/MyList'
+import { Home, Media, Detail, Actor, Search, MyList } from './pages'
 
 function App() {
 
@@ -15,12 +11,12 @@ function App() {
     <Router style={{ backgroundColor: "#fff" }}>
       <Navbar />
       <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/media/:type/:pageNumber' element={<Media />} />
-        <Route path='/detail/:type/:id' element={<Detail />} />
-        <Route path='/actor/:id' element={<Actor />} />
-        <Route path='/search/:key' element={<Search />} />
-        <Route path='/myList' element={<MyList />} />
+        <Route path={ROUTES.HOME} element={<Home />} />
+        <Route path={ROUTES.MEDIA} element={<Media />} />
+        <Route path={ROUTES.DETIAL} element={<Detail />} />
+        <Route path={ROUTES.ACTOR} element={<Actor />} />
+        <Route path={ROUTES.SEARCH} element={<Search />} />
+        <Route path={ROUTES.MY_LIST} element={<MyList />} />
       </Routes>
     </Router>
   )

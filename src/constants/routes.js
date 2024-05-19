@@ -1,0 +1,6 @@
+export const HOME = '/'
+export const MEDIA = '/media/:type/:pageNumber'
+export const DETIAL = '/detail/:type/:id'
+export const ACTOR = '/actor/:id'
+export const SEARCH = '/search/:key'
+export const MY_LIST = '/myList'

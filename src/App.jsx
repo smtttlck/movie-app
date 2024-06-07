@@ -3,7 +3,7 @@ import './App.css'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import * as ROUTES from './constants/routes'
 import Navbar from './components/Navbar'
-import { Home, Media, Detail, Actor, Search, MyList } from './pages'
+import { Home, Media, Detail, Actor, Search } from './pages'
 
 function App() {
 
@@ -16,7 +16,6 @@ function App() {
         <Route path={ROUTES.DETIAL} element={<Detail />} />
         <Route path={ROUTES.ACTOR} element={<Actor />} />
         <Route path={ROUTES.SEARCH} element={<Search />} />
-        <Route path={ROUTES.MY_LIST} element={<MyList />} />
       </Routes>
     </Router>
   )

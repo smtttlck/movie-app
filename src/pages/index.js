@@ -5,4 +5,3 @@ export { default as Media } from './Media';
 export { default as Detail } from './Detail';
 export { default as Actor } from './Actor';
 export { default as Search } from './Search';
-export { default as MyList } from './MyList';

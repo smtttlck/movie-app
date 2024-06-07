@@ -65,9 +65,6 @@ const Navbar = () => {
                     <li>
                         <Link to="/media/tv/1">Series</Link>
                     </li>
-                    <li>
-                        <Link to="/myList">My List</Link>
-                    </li>
                 </ul>
                 {/* theme button */} 
                 <span 

@@ -5,6 +5,10 @@ This is a PERN Stack movie app project. This project was developed using React(V
  for the database. As a user, you can view the movie and actor. As admin, you can manage movies, actor, categories and other admins from the panel.
  > An example for admin login -> Name: root, Password: 1234
 
+### Database Design
+![db](https://github.com/smtttlck/react-movie-app/assets/61507892/07195776-804f-4516-95db-5485d4a8d378)
+
+
 ### Installation and startup
 The created project and its dependencies are:
 - bootstrap, redux, axios, formik, jwt-decode, react-icons, react-player, react-router-dom, react-slick, yup for client
@@ -16,7 +20,6 @@ After importing the database, you need to install and run the dependencies with 
 	npm install && npm run dev	
     cd ..\server\
 	npm install && npm run dev
-
 
 ### In Action
 https://github.com/smtttlck/react-movie-app/assets/61507892/fc08b9ac-33c2-4ff7-a177-ee21baba2103

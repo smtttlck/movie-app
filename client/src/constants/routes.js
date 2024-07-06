@@ -1,0 +1,6 @@
+export const HOME = '/'
+export const MEDIA = '/media/:type'
+export const MOVIE_DETAIL = '/detail/:id'
+export const ACTOR_DETAIL = '/actor/:id'
+export const LOGIN = '/login'
+export const PANEL = '/panel'

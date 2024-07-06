@@ -1,21 +1,30 @@
-# React Movie App
+# Movie App
 
 ### About
-This is a movie app. A website containing information about movies, TV series and actors. It also has a light and dark mode feature. TMDB API (https://developer.themoviedb.org/docs) was used in development.
+This is a PERN Stack movie app project. This project was developed using React(Vite.js) for the front-end, Node.js(Express) for the back-end and PostgreSQL
+ for the database. As a user, you can view the movie and actor. As admin, you can manage movies, actor, categories and other admins from the panel.
+ > An example for admin login -> Name: root, Password: 1234
 
 ### Installation and startup
-The created project includes React, React Router DOM, Redux, React Icons, React Player, React Slick and TMDB Api as dependencies. You need to get an API key by registering at "https://developer.themoviedb.org/docs". You must define your API key in a variable named VITE_API_KEY in the file named ".env" in the main directory. You also need to install and run the dependencies via npm:
+The created project and its dependencies are:
+- bootstrap, redux, axios, formik, jwt-decode, react-icons, react-player, react-router-dom, react-slick, yup for client
+- nodemon(dev-dependency), bcrypt, cors, dotenv, express, express-async-handler, jsonwebtoken, pg, pg-hstore, sequelize, multer for server
 
-    npm i react-router-dom @reduxjs/toolkit react-redux react-icons react-player react-slick
-    npm run dev
+After importing the database, you need to install and run the dependencies with npm:
+
+    cd .\client\
+	npm install && npm run dev	
+    cd ..\server\
+	npm install && npm run dev
+
 
 ### In Action
-https://github.com/smtttlck/react-movie-app/assets/61507892/6a8b6f52-6561-4312-aacc-ac9ef24f843a
+https://github.com/smtttlck/react-movie-app/assets/61507892/fc08b9ac-33c2-4ff7-a177-ee21baba2103
 
 ### Screenshots
-![ss1](https://github.com/smtttlck/react-movie-app/assets/61507892/6d5984dd-7b51-4e1d-b480-8fa948b730c1)
-![ss2](https://github.com/smtttlck/react-movie-app/assets/61507892/3dc91531-1c0f-484a-8f4d-d5a00764b681)
-![ss3](https://github.com/smtttlck/react-movie-app/assets/61507892/fb8e8965-80fa-492e-a9a5-7358078ed055)
-![ss4](https://github.com/smtttlck/react-movie-app/assets/61507892/f1d63ffa-d7f7-4d29-a969-2706af065ac3)
-![ss5](https://github.com/smtttlck/react-movie-app/assets/61507892/822c9f51-0a20-4082-931b-0bf4bb5bc8a4)
-![ss6](https://github.com/smtttlck/react-movie-app/assets/61507892/0937dc00-5909-4f41-9bab-ab95727beff7)
+![img1](https://github.com/smtttlck/react-movie-app/assets/61507892/a7e34f4d-5616-4d2c-9fa0-4ba44a7f247c)
+![img2](https://github.com/smtttlck/react-movie-app/assets/61507892/02e9f47f-a8bc-467f-af19-b5aca55f7f8d)
+![img3](https://github.com/smtttlck/react-movie-app/assets/61507892/6319b906-1582-422f-b182-07136bb00222)
+![img4](https://github.com/smtttlck/react-movie-app/assets/61507892/d3284e8a-c323-4bb0-bdbc-6ad31c4b91aa)
+![img5](https://github.com/smtttlck/react-movie-app/assets/61507892/f284beab-c38c-4806-b7c2-ee9951fbc956)
+![img6](https://github.com/smtttlck/react-movie-app/assets/61507892/554e9747-81d5-4300-9c00-3e13b355f232)

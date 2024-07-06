@@ -1,0 +1,60 @@
+/* Roboto font */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+/* Public Sans font */
+@import url('https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Font rules and colors */
+:root {
+  font-family: Roboto, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  --pink: #EC6090;
+  --pink2: #bf3163;
+  --yellow: #FC0;
+  --red: #ff0000;
+  --red2: #E94541;
+  --white: #f0e6d7;
+  --grey: #697A8D;
+  --grey2: #F5F5F9;
+  --black: #212529;
+  --green: #53AC57;
+  --green2: #C5E1D4;
+}
+
+.panel{font-family: Public Sans;}
+
+/* Background, shadow and text colors */
+.bg-grey{background-color: var(--grey);}
+
+.bg-green2{background-color: var(--green2);}
+
+.green{color: var(--green);}
+
+.red2{color: var(--red2);}
+
+.black{color: var(--black) !important;}
+
+.white{color: var(--white) !important;}
+.white2{color: #fff !important;}
+
+.bg-pink{background-color: var(--pink);}
+.pink{color: var(--pink) !important;}
+.pink2{color: var(--pink2) !important;}
+.pink-shadow{text-shadow:2px 2px 9px var(--pink2);}
+
+.bg-light {background-color: #f0e6d7 !important;}
+.bg-light2 {background-color: var(--grey2) !important;}
+.bg-dark {background-color: #27292A !important;}
+.bg-dark2 {background-color: var(--black) !important;}
+
+.pagination-light {background-color: #fff;}
+.pagination-dark {background-color: #1F2122;}
+
+.pink-border {border: 1px solid var(--pink);}
+.pink-outline {outline: 1px solid var(--pink);}
+
+.white-outline {outline: 1px solid #fff;}
+.white-border {border: 1px solid #fff;}
+

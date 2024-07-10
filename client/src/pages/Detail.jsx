@@ -23,7 +23,7 @@ const Detail = () => {
     }, [id])
 
     return (
-        <div className={`page container bg-${theme}`}>
+        <main className={`page container bg-${theme}`}>
 
             {(data == null) ? <Loader /> :
                 <MovieCard
@@ -31,7 +31,7 @@ const Detail = () => {
                 />
             }
 
-        </div>
+        </main>
     )
 }
 

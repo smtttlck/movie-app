@@ -25,7 +25,7 @@ const Actor = () => {
     }, [id])
 
     return (
-        <div className={`page container bg-${theme} d-flex`}>
+        <main className={`page container bg-${theme} d-flex`}>
 
             {(actor == null) ? <Loader /> :
                 <ActorCard
@@ -33,7 +33,7 @@ const Actor = () => {
                     movies={movies}
                 />
             }
-        </div>
+        </main>
     )
 }
 

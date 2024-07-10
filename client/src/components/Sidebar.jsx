@@ -11,7 +11,7 @@ const Sidebar = ({ admin, table, setTable }) => {
     const navigate = useNavigate()
 
     return (
-        <div className={`sidebar p-2 bg-${theme}2`}>
+        <aside className={`sidebar p-2 bg-${theme}2`}>
             <div className="sidebar-header d-flex justify-content-between">
                 <h3 className="pink2">PANEL</h3>
                 <ThemeButton />
@@ -57,7 +57,7 @@ const Sidebar = ({ admin, table, setTable }) => {
                     </li>
                 }
             </ul>
-        </div>
+        </aside>
     )
 }
 

@@ -7,7 +7,7 @@ const Banner = () => {
     const navigate = useNavigate()
 
     return (
-        <div
+        <section
             className="banner d-flex flex-column justify-content-center rounded"
             style={{ backgroundImage: `url(${bannerPoster})` }}
         >
@@ -20,7 +20,7 @@ const Banner = () => {
                     Browse Now
                 </button>
             </div>
-        </div>
+        </section>
     )
 }
 

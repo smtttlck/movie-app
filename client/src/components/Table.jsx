@@ -51,7 +51,7 @@ const Table = ({ table, setModalInfo, refreshTable }) => {
     return (
         <>
             {datas?.data?.length > 0 &&
-                <div className={`page bg-grey2 rounded-0 bg-${theme} overflow-x-auto w-75 px-4`}>
+                <section className={`page bg-grey2 rounded-0 bg-${theme} overflow-x-auto w-75 px-4`}>
                     <h3 className="pink">{table} ({datas.totalDataCount} items)</h3>
                     <div
                         className="table-utils d-flex justify-content-between"
@@ -140,7 +140,7 @@ const Table = ({ table, setModalInfo, refreshTable }) => {
                         totalDataCount={datas.totalDataCount}
                         table={table}
                     />
-                </div>
+                </section>
             }
         </>
     )

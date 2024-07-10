@@ -4,7 +4,7 @@ import Card from './Card'
 const List = ({ datas, type }) => {
 
     return (
-        <div className="list w-100 d-flex flex-row flex-wrap justify-content-center">
+        <section className="list w-100 d-flex flex-row flex-wrap justify-content-center">
             {datas?.map((data, index) => (
                 <div
                     key={`data-${index}`}
@@ -30,7 +30,7 @@ const List = ({ datas, type }) => {
 
                 </div>
             ))}
-        </div>
+        </section>
     )
 }
 

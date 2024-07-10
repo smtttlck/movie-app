@@ -11,8 +11,8 @@ const Login = () => {
     const [toast, setToast] = useState(false);
     
     return (
-        <div className={`login d-flex bg-${theme}`}>
-            <div className="fix-btn my-3 mx-3"> {/* bunu sağa yasla */ }
+        <main className={`login d-flex bg-${theme}`}>
+            <div className="fix-btn my-3 mx-3">
                 <ThemeButton />
             </div>
             <div className="login-form mx-auto p-5 rounded border">
@@ -23,7 +23,7 @@ const Login = () => {
             <Toast 
                 toast={toast} setToast={setToast}
             />
-        </div>
+        </main>
     )
 }
 

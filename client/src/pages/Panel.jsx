@@ -27,7 +27,7 @@ const Panel = () => {
     }, [])
 
     return (
-        <div className={`panel d-flex bg-${theme}`}>
+        <main className={`panel d-flex bg-${theme}`}>
 
             <Sidebar
                 admin={admin}
@@ -51,7 +51,7 @@ const Panel = () => {
                 toast={toast} setToast={setToast}
             />
 
-        </div>
+        </main>
     )
 }
 

@@ -43,7 +43,7 @@ const Carousel = ({ title, datas, navigateParameter }) => {
     }
 
     return (
-        <div className="carousel my-3">
+        <section className="carousel my-3">
             {!datas ? <Loader /> :
                 <>
                     <div className="slider-header mb-2 d-flex justify-content-between align-items-center">
@@ -75,7 +75,7 @@ const Carousel = ({ title, datas, navigateParameter }) => {
                     </div>
                 </>
             }
-        </div>
+        </section>
 
     )
 }

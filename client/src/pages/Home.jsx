@@ -13,15 +13,15 @@ const Home = () => {
   const [lastMovies, setLastMovies] = useState([])
 
   useEffect(() => {
-    
+
     // data fetch for top rating movies
     api.fetchData("getMovie", "pageSize=12&sort=rating&type=desc")
       .then(movies => setTopRatingMovies(movies.data));
-    
+
     // data fetch for recently released movies
     api.fetchData("getMovie", "pageSize=12&sort=release_date&type=desc")
       .then(movies => setNewMovies(movies.data));
-    
+
     // data fetch for recently released movies
     api.fetchData("getMovie", "pageSize=12&sort=id&type=desc")
       .then(movies => setLastMovies(movies.data));
@@ -32,7 +32,8 @@ const Home = () => {
 
 
   return (
-    <div className={`page container bg-${theme}`}>
+    <main className={`page container bg-${theme}`}>
+      
       <Banner />
 
       <Carousel
@@ -53,7 +54,7 @@ const Home = () => {
         navigateParameter={"sort=id&type=desc"}
       />
 
-    </div>
+    </main>
   )
 }
 

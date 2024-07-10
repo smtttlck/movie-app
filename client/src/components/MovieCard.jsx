@@ -9,7 +9,7 @@ const MovieCard = ({ data }) => {
     const { theme } = useSelector(state => state.theme)
 
     return (
-        <div className="movie-card d-md-flex w-100 py-5 pt-md-0">
+        <section className="movie-card d-md-flex w-100 py-5 pt-md-0">
             {/* movie poster */}
             <div className="poster w-lg-25">
                 <img 
@@ -77,7 +77,7 @@ const MovieCard = ({ data }) => {
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
     )
 }
 

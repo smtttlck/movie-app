@@ -7,7 +7,7 @@ const ActorCard = ({ actor, movies }) => {
     const { theme } = useSelector(state => state.theme)
 
     return (
-        <div className="actor-card d-md-flex w-100 py-5 pt-md-0">
+        <section className="actor-card d-md-flex w-100 py-5 pt-md-0">
             <div className="personal-info w-lg-25">
                 {/* actor poster */}
                 <img src={`http://localhost:3001/${actor?.img_path?.split("public\\")[1].split("\\").join('/')}`} alt={actor.name} />
@@ -71,7 +71,7 @@ const ActorCard = ({ actor, movies }) => {
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
     )
 }
 

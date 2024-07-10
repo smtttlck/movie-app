@@ -33,7 +33,7 @@ const Media = () => {
     }, [type, query.toString()])
 
     return (
-        <div className={`page container bg-${theme}`}>
+        <main className={`page container bg-${theme}`}>
             <h1 className="pink">
                 {query.get("key") ? `Search results for '${query.get("key")}'` : `${type.charAt(0).toUpperCase() + type.slice(1)}s`}
             </h1>
@@ -52,7 +52,7 @@ const Media = () => {
                     table={"Client"}
                 />
             }
-        </div>
+        </main>
     )
 }
 

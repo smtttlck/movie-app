@@ -49,7 +49,7 @@ const LoginForm = ({ setToast }) => {
                 <Form>
 
                     <label
-                        htmlFor="name"
+                        htmlFor="name-input"
                         className="form-label pink mt-2"
                     >
                         Name
@@ -64,7 +64,7 @@ const LoginForm = ({ setToast }) => {
                     ) : null}
 
                     <label
-                        htmlFor="password"
+                        htmlFor="password-input"
                         className="form-label pink mt-3"
                     >
                         Password

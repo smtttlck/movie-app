@@ -232,6 +232,7 @@ const Modal = ({ table, modalInfo, setModalInfo, setRefreshTable, setToast }) =>
                         )
                     )}
                     <input
+                        id={title}
                         className="form-control my-2"
                         name={title} type="file"
                         onChange={(e) => {
@@ -246,6 +247,7 @@ const Modal = ({ table, modalInfo, setModalInfo, setRefreshTable, setToast }) =>
         else if (title === "rating") {
             return (
                 <input
+                    id={title}
                     className="form-control my-2"
                     name={title} type="number" step={0.1} min={0} max={10}
                     onChange={formik.handleChange}
@@ -330,6 +332,7 @@ const Modal = ({ table, modalInfo, setModalInfo, setRefreshTable, setToast }) =>
         else {
             return (
                 <input
+                    id={title}
                     className="form-control my-2"
                     name={title} type="text"
                     onChange={formik.handleChange}

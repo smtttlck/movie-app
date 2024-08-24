@@ -1,8 +1,7 @@
 # Movie App
 
 ### About
-This is a PERN Stack movie app project. This project was developed using React(Vite.js) for the front-end, Node.js(Express) for the back-end and PostgreSQL
- for the database. As a user, you can view the movie and actor. As admin, you can manage movies, actor, categories and other admins from the panel.
+This is a PERN Stack movie app project. This project was developed using React(Vite.js) for the front-end, Node.js(Express) for the back-end, PostgreSQL for the database and Jest for the tests. As a user, you can view the movie and actor. As admin, you can manage movies, actor, categories and other admins from the panel.
  > An example for admin login -> Name: root, Password: 1234
 
 ### Database Design
@@ -11,7 +10,7 @@ This is a PERN Stack movie app project. This project was developed using React(V
 
 ### Installation and startup
 The created project and its dependencies are:
-- bootstrap, redux, axios, formik, jwt-decode, react-icons, react-player, react-router-dom, react-slick, yup for client
+- bootstrap, redux, axios, formik, jwt-decode, react-icons, react-player, react-router-dom, react-slick, yup, jest(dev-dependency), jsdom(dev-dependency), babel-jest(dev-dependency), jest-mock(dev-dependency), identity-obj-proxy(dev-dependency) for client
 - nodemon(dev-dependency), bcrypt, cors, dotenv, express, express-async-handler, jsonwebtoken, pg, pg-hstore, sequelize, multer for server
 
 After importing the database, you need to install and run the dependencies with npm:

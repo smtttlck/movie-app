@@ -1,7 +1,12 @@
 import { View, Text, ImageBackground, StyleSheet, TouchableOpacity } from 'react-native';
 import { colors, fonts } from '../constants';
+import { UPLOAD_BASE_URL } from '@env';
 
-const MovieCard = ({ cardType, id, name, releaseDate, rating, posterPath, array }) => {
+const MovieCard = ({ cardType, id, name, release_date, rating, poster_path, array }) => {
+
+  // data formatting
+  const releaseDate = release_date.split('-')[0];
+  const posterPath = `${UPLOAD_BASE_URL}/${poster_path.replace(/^public[\\/]/, '').split('\\').join('/')}`;
 
   // determine card dimensions based on cardType
   const cardWidth = cardType === 'big' ? 250 : 150;
@@ -24,7 +29,10 @@ const MovieCard = ({ cardType, id, name, releaseDate, rating, posterPath, array 
         { width: cardWidth, height: cardHeight }
       ]}
     >
-      <ImageBackground source={{ uri: posterPath }} style={styles.imageBackground}>
+      <ImageBackground 
+        source={{ uri: posterPath }} 
+        style={styles.imageBackground}
+      >
 
         <View style={[
           styles.overlay,

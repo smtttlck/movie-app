@@ -1,44 +1,31 @@
-  import { SafeAreaView } from "react-native-safe-area-context";
-  import RootNavigation from "./src/navigation/RootNavigation";
-  import { StyleSheet, View } from "react-native";
-  import { SearchBarToggle } from "./src/components";
-  import { colors } from "./src/constants";
+import { SafeAreaView } from "react-native-safe-area-context";
+import RootNavigation from "./src/navigation/RootNavigation";
+import { StyleSheet, View } from "react-native";
+import { colors } from "./src/constants";
 
-  const App = () => {
+const App = () => {
 
-    return (
+  return (
 
-      <SafeAreaView style={styles.container}>
-        
-        {/* Top area: round search toggle */}
-        <View style={styles.header}>
-          <SearchBarToggle />
-          <SearchBarToggle />
-        </View>
+    <SafeAreaView style={styles.container}>
 
-        {/* App navigation / rest of the app */}
-        <View style={styles.content}>
-          <RootNavigation />
-        </View>
+      {/* App navigation / rest of the app */}
+      <View style={styles.content}>
+        <RootNavigation />
+      </View>
 
-      </SafeAreaView>
-    );
-  }
+    </SafeAreaView>
+  );
+}
 
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: colors.black,
-    },
-    header: {
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      paddingHorizontal: 10,
-      zIndex: 10,
-    },
-    content: {
-      flex: 1,
-    },
-  });
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: colors.black,
+  },
+  content: {
+    flex: 1,
+  },
+});
 
-  export default App;
+export default App;

@@ -55,7 +55,7 @@ const MovieCarousel = ({ data = [] }) => {
     const contentContainerStyle = useMemo(() => ({ paddingHorizontal: SIDE_PADDING }), []);
 
     return (
-        <Animated.View style={styles.container}>
+        <Animated.View>
             <Animated.ScrollView
                 horizontal
                 showsHorizontalScrollIndicator={false}
@@ -80,9 +80,6 @@ const MovieCarousel = ({ data = [] }) => {
 };
 
 const styles = StyleSheet.create({
-    container: {
-        marginVertical: 10,
-    },
     cardWrapper: {
         width: CARD_WIDTH,
         marginHorizontal: ITEM_SPACING / 2,

@@ -1,8 +1,13 @@
 import { View, Text, ImageBackground, StyleSheet, TouchableOpacity } from 'react-native';
 import { colors, fonts } from '../constants';
 import { UPLOAD_BASE_URL } from '@env';
+import { useNavigation } from '@react-navigation/native';
+import { globalStyles } from '../styles/globalStyles';
 
-const MovieCard = ({ cardType, id, name, release_date, rating, poster_path, array }) => {
+const MovieCard = ({ cardType, id, name, release_date, rating, poster_path, categories }) => {
+
+  // navigation hook
+  const navigation = useNavigation();
 
   // data formatting
   const releaseDate = release_date.split('-')[0];
@@ -16,7 +21,7 @@ const MovieCard = ({ cardType, id, name, release_date, rating, poster_path, arra
   const overlayHeight = cardType === 'big' ? 120 : 95;
 
   // limit categories shown based on card type
-  const categories = (array || []).slice(0, cardType === 'big' ? 3 : 2);
+  const displayedCategories = (categories || []).slice(0, cardType === 'big' ? 3 : 2);
 
   // max width for each category box so long names don't blow out layout
   const categoryMaxWidth = cardType === 'big' ? cardWidth * 0.6 : cardWidth * 0.5;
@@ -28,6 +33,7 @@ const MovieCard = ({ cardType, id, name, release_date, rating, poster_path, arra
         styles.card,
         { width: cardWidth, height: cardHeight }
       ]}
+      onPress={() => navigation.navigate('MovieScreen', { movieId: id })}
     >
       <ImageBackground 
         source={{ uri: posterPath }} 
@@ -54,7 +60,7 @@ const MovieCard = ({ cardType, id, name, release_date, rating, poster_path, arra
             {name}
           </Text>
 
-          <Text style={[styles.subText, cardType === 'big' ? { textAlign: 'center' } : { textAlign: 'left' }]}>
+          <Text style={[globalStyles.subText, cardType === 'big' ? { textAlign: 'center' } : { textAlign: 'left' }]}>
             {releaseDate} • ⭐ {rating}
           </Text>
 
@@ -62,18 +68,18 @@ const MovieCard = ({ cardType, id, name, release_date, rating, poster_path, arra
             styles.categories,
             cardType === 'big' ? { justifyContent: 'center' } : { justifyContent: 'flex-start' }
           ]}>
-            {categories.map((category, index) => (
+            {displayedCategories.map((category, index) => (
               <View
                 key={index}
                 style={[
-                  styles.categoryContainer,
+                  globalStyles.badgeContainer,
                   { maxWidth: categoryMaxWidth }
                 ]}
               >
                 <Text
                   numberOfLines={1}
                   ellipsizeMode="tail"
-                  style={[styles.categoryText, { fontSize: fonts.size.xsm }]}
+                  style={globalStyles.badgeText}
                 >
                   {category.name}
                 </Text>
@@ -113,29 +119,11 @@ const styles = StyleSheet.create({
     color: colors.white,
     lineHeight: 18,
   },
-  subText: {
-    fontSize: fonts.size.xsm,
-    color: colors.white2,
-    marginTop: 4,
-  },
   categories: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     marginTop: 6,
     width: '100%',
-  },
-  categoryContainer: {
-    paddingHorizontal: 8,
-    paddingVertical: 4,
-    borderRadius: 6,
-    marginRight: 6,
-    marginTop: 4,
-    backgroundColor: colors.pink,
-    minWidth: 0,
-  },
-  categoryText: {
-    color: colors.white,
-    flexShrink: 1,
   },
 });
 

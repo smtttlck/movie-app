@@ -1,6 +1,6 @@
 import { ScrollView, StyleSheet, View } from 'react-native'
 import { globalStyles } from '../styles/globalStyles';
-import { MovieCarousel, MovieGallery } from '../components';
+import { MovieCarousel, MovieGallery, SearchBarToggle } from '../components';
 import * as api from '../api/api';
 import { useEffect, useState } from 'react';
 
@@ -31,6 +31,10 @@ const HomeScreen = () => {
 
         <View style={globalStyles.container}>
 
+            <View style={styles.header}>
+                <SearchBarToggle />
+            </View>
+
             <ScrollView>
 
                 <MovieCarousel
@@ -60,4 +64,9 @@ const HomeScreen = () => {
 
 export default HomeScreen;
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+    header: {
+        width: '100%',
+        paddingHorizontal: 10,
+    },
+})

@@ -1,8 +1,16 @@
 import { View, Text, ImageBackground, StyleSheet, TouchableOpacity } from 'react-native';
 import { colors, fonts } from '../constants';
-import { UPLOAD_BASE_URL } from '@env';
 import { useNavigation } from '@react-navigation/native';
 import { globalStyles } from '../styles/globalStyles';
+import { FontAwesome as Icon } from '@expo/vector-icons';
+import { 
+  getCardDimensions, 
+  getCategoryMaxWidth, 
+  getDisplayedCategories, 
+  getOverlayHeight, 
+  imgPathConverter, 
+  yearExtractor 
+} from '../utils/helpers';
 
 const MovieCard = ({ cardType, id, name, release_date, rating, poster_path, categories }) => {
 
@@ -10,21 +18,13 @@ const MovieCard = ({ cardType, id, name, release_date, rating, poster_path, cate
   const navigation = useNavigation();
 
   // data formatting
-  const releaseDate = release_date.split('-')[0];
-  const posterPath = `${UPLOAD_BASE_URL}/${poster_path.replace(/^public[\\/]/, '').split('\\').join('/')}`;
+  const releaseDate = yearExtractor(release_date);
+  const posterPath = imgPathConverter(poster_path);
+  const { width: cardWidth, height: cardHeight } = getCardDimensions(cardType);
+  const overlayHeight = getOverlayHeight(cardType);
+  const displayedCategories = getDisplayedCategories(categories, cardType);
+  const categoryMaxWidth = getCategoryMaxWidth(cardType);
 
-  // determine card dimensions based on cardType
-  const cardWidth = cardType === 'big' ? 250 : 150;
-  const cardHeight = cardType === 'big' ? 400 : 250;
-
-  // overlay height fixed so title won't resize it
-  const overlayHeight = cardType === 'big' ? 120 : 95;
-
-  // limit categories shown based on card type
-  const displayedCategories = (categories || []).slice(0, cardType === 'big' ? 3 : 2);
-
-  // max width for each category box so long names don't blow out layout
-  const categoryMaxWidth = cardType === 'big' ? cardWidth * 0.6 : cardWidth * 0.5;
 
   return (
 
@@ -35,8 +35,8 @@ const MovieCard = ({ cardType, id, name, release_date, rating, poster_path, cate
       ]}
       onPress={() => navigation.navigate('MovieScreen', { movieId: id })}
     >
-      <ImageBackground 
-        source={{ uri: posterPath }} 
+      <ImageBackground
+        source={{ uri: posterPath }}
         style={styles.imageBackground}
       >
 
@@ -61,7 +61,7 @@ const MovieCard = ({ cardType, id, name, release_date, rating, poster_path, cate
           </Text>
 
           <Text style={[globalStyles.subText, cardType === 'big' ? { textAlign: 'center' } : { textAlign: 'left' }]}>
-            {releaseDate} • ⭐ {rating}
+            {releaseDate} • <Icon name="star" size={fonts.size.sm} color={colors.yellow} /> {rating}
           </Text>
 
           <View style={[

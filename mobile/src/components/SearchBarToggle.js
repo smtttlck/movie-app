@@ -1,10 +1,10 @@
 import { useState, useRef, useEffect } from 'react';
 import { colors, fonts } from '../constants';
+import { FontAwesome as Icon } from '@expo/vector-icons';
 import {
     View,
     TouchableOpacity,
     TextInput,
-    Text,
     StyleSheet,
     Animated,
     Easing,
@@ -73,7 +73,7 @@ const SearchBarToggle = ({ }) => {
                     accessibilityRole="button"
                     accessibilityLabel="Open search"
                 >
-                    <Text style={styles.icon}>🔍</Text>
+                    <Icon name="search" size={fonts.size.xl} color={colors.white2} />
                 </TouchableOpacity>
 
             </Animated.View>
@@ -108,7 +108,7 @@ const SearchBarToggle = ({ }) => {
                     accessibilityRole="button"
                     accessibilityLabel="Close search"
                 >
-                    <Text style={styles.backText}>✕</Text>
+                    <Icon name="close" size={fonts.size.xl} color={colors.white} />
                 </TouchableOpacity>
 
             </Animated.View>
@@ -139,10 +139,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    icon: {
-        fontSize: fonts.size.lg,
-        color: colors.white,
-    },
     openWrap: {
         flex: 1,
         flexDirection: 'row',
@@ -155,11 +151,6 @@ const styles = StyleSheet.create({
         padding: 6,
         justifyContent: 'center',
         alignItems: 'center',
-    },
-    backText: {
-        color: colors.white,
-        fontSize: fonts.size.md,
-        fontWeight: fonts.weight.bold,
     },
     inputWrapOpen: {
         flex: 1,

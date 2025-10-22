@@ -5,5 +5,6 @@ export default {
   black: '#0D1117',
   opacityBlack: '#00000099',
   white: '#FFF',
-  white2: '#ccc',
+  white2: '#CCC',
+  yellow: '#F9D405',
 };

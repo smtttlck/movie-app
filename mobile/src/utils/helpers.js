@@ -4,12 +4,12 @@ import { UPLOAD_BASE_URL } from '@env';
 
 // converts server image path to full URL for mobile app
 export const imgPathConverter = (path) => {
-    return `${UPLOAD_BASE_URL}/${path.replace(/^public[\\/]/, '').split('\\').join('/')}`;
+  return `${UPLOAD_BASE_URL}/${path.replace(/^public[\\/]/, '').split('\\').join('/')}`;
 };
 
 // extracts year from date string in format YYYY-MM-DD
 export const yearExtractor = (dateString) => {
-    return dateString.split('-')[0];
+  return dateString.split('-')[0];
 };
 
 // returns card dimensions based on card type
@@ -35,4 +35,16 @@ export const getDisplayedCategories = (categories = [], cardType) => {
 export const getCategoryMaxWidth = (cardType) => {
   const width = cardType === 'big' ? 250 : 150;
   return cardType === 'big' ? width * 0.6 : width * 0.5;
+};
+
+// converts screen names to icon names for navigation tabs
+export const iconNameConverter = (screenName) => {
+  switch (screenName) {
+    case 'HomeScreen':
+      return 'home';
+    case 'ListScreen':
+      return 'movie-open';
+    default:
+      return 'question';
+  }
 };

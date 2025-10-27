@@ -9,6 +9,7 @@ export const globalStyles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: colors.black,
     width: '100%',
+    paddingTop: 22,
   },
   title: {
     color: colors.pink,
@@ -36,5 +37,12 @@ export const globalStyles = StyleSheet.create({
     color: colors.white,
     flexShrink: 1,
     fontSize: fonts.size.xsm
+  },
+  searchBarToggle: {
+        width: '100%',
+        paddingHorizontal: 10,
+        position: 'absolute',
+        top: 10,
+        zIndex: 10,
   },
 });

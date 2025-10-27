@@ -3,9 +3,14 @@ import { globalStyles } from '../styles/globalStyles';
 import { MovieCarousel, MovieGallery, SearchBarToggle } from '../components';
 import * as api from '../api/api';
 import { useEffect, useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
 
 const HomeScreen = () => {
 
+    // navigation hook
+    const navigation = useNavigation();
+
+    // state hooks
     const [topRatingMovies, setTopRatingMovies] = useState([]);
     const [newMovies, setNewMovies] = useState([]);
     const [lastMovies, setLastMovies] = useState([]);
@@ -31,7 +36,7 @@ const HomeScreen = () => {
 
         <View style={globalStyles.container}>
 
-            <View style={styles.header}>
+            <View style={globalStyles.searchBarToggle}>
                 <SearchBarToggle />
             </View>
 
@@ -44,16 +49,19 @@ const HomeScreen = () => {
                 <MovieGallery
                     title={'Top Rated Movie'}
                     data={topRatingMovies}
+                    onViewAll={() => navigation.navigate('ListScreen', { title: 'Top Rated Movies', query: 'pageSize=12&sort=rating&type=desc' })}
                 />
 
                 <MovieGallery
                     title={'Recently Released Movies'}
                     data={newMovies}
+                    onViewAll={() => navigation.navigate('ListScreen', { title: 'Recently Released Movies', query: 'pageSize=12&sort=release_date&type=desc' })}
                 />
 
                 <MovieGallery
                     title={'Recently Added Movies'}
                     data={lastMovies}
+                    onViewAll={() => navigation.navigate('ListScreen', { title: 'Recently Added Movies', query: 'pageSize=12&sort=id&type=desc' })}
                 />
 
             </ScrollView>
@@ -64,9 +72,4 @@ const HomeScreen = () => {
 
 export default HomeScreen;
 
-const styles = StyleSheet.create({
-    header: {
-        width: '100%',
-        paddingHorizontal: 10,
-    },
-})
+const styles = StyleSheet.create({})

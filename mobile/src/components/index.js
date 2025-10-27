@@ -15,4 +15,5 @@ export {
     MovieDetail,
     ActorMiniCard,
     BackButton,
+    
 };

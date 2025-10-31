@@ -37,6 +37,11 @@ export const getCategoryMaxWidth = (cardType) => {
   return cardType === 'big' ? width * 0.6 : width * 0.5;
 };
 
+// formats rating to one decimal place
+export const ratingFormatter = (rating) => {
+  return rating.toFixed(1);
+}
+
 // converts screen names to icon names for navigation tabs
 export const iconNameConverter = (screenName) => {
   switch (screenName) {

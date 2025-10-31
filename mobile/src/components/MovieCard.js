@@ -9,6 +9,7 @@ import {
   getDisplayedCategories, 
   getOverlayHeight, 
   imgPathConverter, 
+  ratingFormatter, 
   yearExtractor 
 } from '../utils/helpers';
 
@@ -24,6 +25,7 @@ const MovieCard = ({ cardType, id, name, release_date, rating, poster_path, cate
   const overlayHeight = getOverlayHeight(cardType);
   const displayedCategories = getDisplayedCategories(categories, cardType);
   const categoryMaxWidth = getCategoryMaxWidth(cardType);
+  const formattedRating = ratingFormatter(rating);
 
 
   return (
@@ -61,7 +63,7 @@ const MovieCard = ({ cardType, id, name, release_date, rating, poster_path, cate
           </Text>
 
           <Text style={[globalStyles.subText, cardType === 'big' ? { textAlign: 'center' } : { textAlign: 'left' }]}>
-            {releaseDate} • <Icon name="star" size={fonts.size.sm} color={colors.yellow} /> {rating}
+            {releaseDate} • <Icon name="star" size={fonts.size.sm} color={colors.yellow} /> {formattedRating}
           </Text>
 
           <View style={[

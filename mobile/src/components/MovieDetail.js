@@ -1,11 +1,19 @@
 import { Image, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native'
 import { globalStyles } from '../styles/globalStyles'
 import { colors, fonts } from '../constants'
-import ActorMiniCard from './ActorMiniCard'
+import MiniCard from './MiniCard'
 import BackButton from './BackButton'
 import { FontAwesome as Icon } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native'
+import { ratingFormatter } from '../utils/helpers'
 
 const MovieDetail = ({ posterPath, movie }) => {
+
+    // navigation hook
+    const navigation = useNavigation();
+
+    const formattedRating = ratingFormatter(movie.rating);
+
     return (
         <View>
             <BackButton />
@@ -21,9 +29,9 @@ const MovieDetail = ({ posterPath, movie }) => {
                 )}
 
                 <View style={styles.textContainer}>
-                    <Text style={globalStyles.title}>{movie.name}</Text>
+                    <Text style={[globalStyles.title, styles.movieName]}>{movie.name}</Text>
                     <Text style={globalStyles.subText}>
-                        {movie.rating} <Icon name="star" size={fonts.size.sm} color={colors.yellow} />   •    {movie.release_date}
+                        {formattedRating} <Icon name="star" size={fonts.size.sm} color={colors.yellow} />   •    {movie.release_date}
                     </Text>
 
                     <View style={styles.categories}>
@@ -49,15 +57,21 @@ const MovieDetail = ({ posterPath, movie }) => {
                         </Text>
                     </Pressable>
 
+                    <Text style={globalStyles.title}>Main Actors</Text>
                     <ScrollView
                         horizontal
                         style={styles.actorsContainer}
                     >
                         {movie.actors.map((actor, index) => (
-                            <ActorMiniCard key={index} actor={actor} />
+                            <MiniCard
+                                key={index}
+                                actor={actor}
+                                onPressFnc={() => navigation.navigate('ActorScreen', { actorId: actor.id })}
+                            />
                         ))}
                     </ScrollView>
 
+                    <Text style={globalStyles.title}>Overview</Text>
                     <View>
                         <Text style={styles.overviewText}>
                             {movie.overview}
@@ -80,6 +94,11 @@ const styles = StyleSheet.create({
         height: 460,
         resizeMode: 'stretch',
     },
+    movieName: {
+        fontSize: fonts.size.xxl,
+        fontWeight: fonts.weight.bold,
+        marginBottom: 4,
+    },
     textContainer: {
         paddingHorizontal: 16,
     },
@@ -93,7 +112,7 @@ const styles = StyleSheet.create({
         backgroundColor: colors.grey,
         alignItems: 'center',
         borderRadius: 20,
-        marginTop: 16,
+        marginVertical: 16,
         paddingVertical: 10,
     },
     buttonText: {
@@ -103,8 +122,8 @@ const styles = StyleSheet.create({
     },
     actorsContainer: {
         height: 100,
-        marginTop: 16,
-        marginBottom: 32,
+        marginTop: 4,
+        marginBottom: 16,
         flexDirection: 'row',
     },
     overviewText: {

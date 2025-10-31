@@ -1,13 +1,17 @@
-import { Image, StyleSheet, Text, View } from 'react-native'
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { colors, fonts } from '../constants'
 import { imgPathConverter } from '../utils/helpers'
 
-const ActorMiniCard = ({ actor }) => {
+const MiniCard = ({ actor, onPressFnc }) => {
 
-    const imgPath = imgPathConverter(actor.img_path);
+    const imgPath = imgPathConverter(actor.img_path ? actor.img_path : actor.poster_path);
 
     return (
-        <View style={styles.container}>
+        <TouchableOpacity
+            style={styles.container}
+            onPress={() => onPressFnc()}
+        >
+
             <Image
                 source={{ uri: imgPath }}
                 style={styles.image}
@@ -20,11 +24,12 @@ const ActorMiniCard = ({ actor }) => {
                     {actor.characterName}
                 </Text>
             </View>
-        </View>
+
+        </TouchableOpacity>
     )
 }
 
-export default ActorMiniCard
+export default MiniCard
 
 const styles = StyleSheet.create({
     container: {

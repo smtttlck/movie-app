@@ -47,8 +47,10 @@ export const iconNameConverter = (screenName) => {
   switch (screenName) {
     case 'HomeScreen':
       return 'home';
-    case 'ListScreen':
+    case 'MovieListScreen':
       return 'movie-open';
+    case 'ActorListScreen':
+      return 'account-group';
     default:
       return 'question';
   }

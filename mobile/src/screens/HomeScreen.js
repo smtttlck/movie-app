@@ -49,19 +49,19 @@ const HomeScreen = () => {
                 <MovieGallery
                     title={'Top Rated Movie'}
                     data={topRatingMovies}
-                    onViewAll={() => navigation.navigate('ListScreen', { title: 'Top Rated Movies', query: 'pageSize=12&sort=rating&type=desc' })}
+                    onViewAll={() => navigation.navigate('MovieListScreen', { title: 'Top Rated Movies', query: 'pageSize=12&sort=rating&type=desc' })}
                 />
 
                 <MovieGallery
                     title={'Recently Released Movies'}
                     data={newMovies}
-                    onViewAll={() => navigation.navigate('ListScreen', { title: 'Recently Released Movies', query: 'pageSize=12&sort=release_date&type=desc' })}
+                    onViewAll={() => navigation.navigate('MovieListScreen', { title: 'Recently Released Movies', query: 'pageSize=12&sort=release_date&type=desc' })}
                 />
 
                 <MovieGallery
                     title={'Recently Added Movies'}
                     data={lastMovies}
-                    onViewAll={() => navigation.navigate('ListScreen', { title: 'Recently Added Movies', query: 'pageSize=12&sort=id&type=desc' })}
+                    onViewAll={() => navigation.navigate('MovieListScreen', { title: 'Recently Added Movies', query: 'pageSize=12&sort=id&type=desc' })}
                 />
 
             </ScrollView>

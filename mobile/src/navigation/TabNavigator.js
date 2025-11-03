@@ -24,6 +24,7 @@ export default function TabNavigator() {
           key={route.name}
           name={route.name}
           component={route.component}
+          initialParams={{ ...(route.tabProps ?? {}) }} // Pass any tab-specific props as initialParams
         />
       ))}
     </Tab.Navigator>

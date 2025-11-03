@@ -3,18 +3,19 @@ import { globalStyles } from '../styles/globalStyles';
 import { MovieCard, SearchBarToggle } from '../components';
 import { useEffect, useState } from 'react';
 import * as api from '../api/api';
+import ActorCard from '../components/ActorCard';
 
 const ListScreen = ({ route }) => {
 
-    const [movies, setMovies] = useState([]);
+    const [datas, setDatas] = useState([]);
     const [page, setPage] = useState(1);
     const [loading, setLoading] = useState(false);
     const [hasMore, setHasMore] = useState(true);
 
     // get title and query from route params or set default values
-    const { title = 'Recently Added Movies', query = 'pageSize=12&sort=id&type=desc' } = route.params || {};
+    const { title, query } = route.params || {};
 
-    const fetchMovies = async () => {
+    const fetchData = async () => {
 
         if (loading || !hasMore) return; // if already loading or no more data, return
 
@@ -30,8 +31,8 @@ const ListScreen = ({ route }) => {
 
             if (newData.length === 0) {
                 setHasMore(false);
-            } else { // append new data to existing movies
-                setMovies(prev => [...prev, ...newData]);
+            } else { // append new data to existing data
+                setDatas(prev => [...prev, ...newData]);
                 setPage(prev => prev + 1);
             }
         } catch (error) {
@@ -42,7 +43,7 @@ const ListScreen = ({ route }) => {
     };
 
     useEffect(() => { // reset state when title or query changes
-        setMovies([]);
+        setDatas([]);
         setPage(1);
         setHasMore(true);
     }, [title, query]);
@@ -54,28 +55,32 @@ const ListScreen = ({ route }) => {
                 <SearchBarToggle />
             </View>
 
-
             <Text style={globalStyles.title}>{title}</Text>
 
             <FlatList
-                data={movies}
-                renderItem={({ item }) => (
-                    <MovieCard
-                        key={item.id}
-                        cardType="small"
-                        {...item}
-                    />
-                )}
+                data={datas}
+                renderItem={({ item }) =>
+                    title !== 'Actors' ? (
+                        <MovieCard // for movies
+                            key={`${title}-${item.id}`}
+                            cardType="small"
+                            {...item}
+                        />
+                    ) : (
+                        <ActorCard // for actors
+                            key={`${title}-${item.id}`}
+                            {...item}
+                        />
+                    )}
                 keyExtractor={(item) => item.id?.toString()}
                 key={2}
-                numColumns={2}
+                numColumns={title === 'Actors' ? 3 : 2}
                 columnWrapperStyle={styles.row}
-                onEndReached={fetchMovies}
+                onEndReached={fetchData}
                 onEndReachedThreshold={0.5}
                 ListFooterComponent={loading ? <Text>Loading...</Text> : null}
                 contentContainerStyle={styles.listContainer}
             />
-
 
         </View>
     )

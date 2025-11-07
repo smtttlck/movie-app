@@ -31,10 +31,11 @@ export default ActorCard
 
 const styles = StyleSheet.create({
     card: {
-        padding: 10,
-        marginBottom: 10,
+        paddingHorizontal: 3,
+        paddingVertical: 10,
         flex: 1,
         marginHorizontal: 5,
+        width: 100,
     },
     cardImage: {
         width: '100%',
@@ -48,5 +49,7 @@ const styles = StyleSheet.create({
         color: '#fff',
         textAlign: 'center',
         fontWeight: fonts.weight.bold,
+        fontSize: fonts.size.sm,
+        maxWidth: '100%',
     },
 })

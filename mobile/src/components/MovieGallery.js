@@ -3,14 +3,19 @@ import { View, FlatList, StyleSheet, Text, TouchableOpacity } from 'react-native
 import MovieCard from './MovieCard';
 import { globalStyles } from '../styles/globalStyles';
 import { colors } from '../constants';
+import ActorCard from './ActorCard';
 
 const MovieGallery = ({ title, data = [], onViewAll }) => {
-    
+
     // renderItem wrapped in useCallback to prevent re-renders
     const renderItem = useCallback(
         ({ item }) => (
             <View style={styles.itemWrap}>
-                <MovieCard cardType={'small'} {...item} />
+                {title === "Actor" ? (
+                    <ActorCard {...item} />
+                ) : (
+                    <MovieCard cardType={'small'} {...item} />
+                )}
             </View>
         ),
         []
@@ -28,14 +33,16 @@ const MovieGallery = ({ title, data = [], onViewAll }) => {
 
                 <Text style={globalStyles.title}>{title}</Text>
 
-                <TouchableOpacity
-                    onPress={onViewAll}
-                    accessibilityRole="button"
-                    accessibilityLabel={`View all ${title}`}
-                    hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-                >
-                    <Text style={[styles.viewAllText, globalStyles.buttonText]}>View All</Text>
-                </TouchableOpacity>
+                {onViewAll && (
+                    <TouchableOpacity
+                        onPress={onViewAll}
+                        accessibilityRole="button"
+                        accessibilityLabel={`View all ${title}`}
+                        hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+                    >
+                        <Text style={[styles.viewAllText, globalStyles.buttonText]}>View All</Text>
+                    </TouchableOpacity>
+                )}
 
             </View>
 

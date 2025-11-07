@@ -1,6 +1,8 @@
 import { useState, useRef, useEffect } from 'react';
 import { colors, fonts } from '../constants';
 import { FontAwesome as Icon } from '@expo/vector-icons';
+import * as api from '../api/api';
+import MovieGallery from './MovieGallery';
 import {
     View,
     TouchableOpacity,
@@ -20,6 +22,10 @@ const SearchBarToggle = ({ }) => {
     const anim = useRef(new Animated.Value(0)).current;
     const inputRef = useRef(null);
 
+    // search results state
+    const [movies, setMovies] = useState([]);
+    const [actors, setActors] = useState([]);
+
     useEffect(() => {
         Animated.timing(anim, {
             toValue: open ? 1 : 0,
@@ -30,6 +36,20 @@ const SearchBarToggle = ({ }) => {
             if (open) inputRef.current?.focus?.();
         });
     }, [open, anim]);
+
+    useEffect(() => {
+        if (query.length < 3) {
+            // reset search results when query is cleared
+            setMovies([]);
+            setActors([]);
+        } else {
+            // fetch search results
+            api.fetchData("getMovie", `name=${query}&page=1&pageSize=6`)
+                .then(movies => setMovies(movies.data));
+            api.fetchData("getActor", `name=${query}&page=1&pageSize=6`)
+                .then(actors => setActors(actors.data));
+        }
+    }, [query])
 
     const containerWidth = anim.interpolate({
         inputRange: [0, 1],
@@ -54,66 +74,87 @@ const SearchBarToggle = ({ }) => {
     });
 
     return (
-        <Animated.View
-            style={[
-                styles.container,
-                {
-                    width: containerWidth,
-                    borderRadius,
-                },
-            ]}
-        >
+        <View>
+            {/* Search Bar Container */}
+            <Animated.View
+                style={[
+                    styles.container,
+                    {
+                        width: containerWidth,
+                        borderRadius,
+                    },
+                ]}
+            >
 
-            <Animated.View style={[styles.roundButton, { opacity: iconOpacity }]}>
+                {/* Search Icon Button */}
+                <Animated.View style={[styles.roundButton, { opacity: iconOpacity }]}>
 
-                <TouchableOpacity
-                    onPress={() => setOpen(true)}
-                    style={styles.touchableCircle}
-                    activeOpacity={0.8}
-                    accessibilityRole="button"
-                    accessibilityLabel="Open search"
-                >
-                    <Icon name="search" size={fonts.size.xl} color={colors.white2} />
-                </TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={() => setOpen(true)}
+                        style={styles.touchableCircle}
+                        activeOpacity={0.8}
+                        accessibilityRole="button"
+                        accessibilityLabel="Open search"
+                    >
+                        <Icon name="search" size={fonts.size.xl} color={colors.white2} />
+                    </TouchableOpacity>
+
+                </Animated.View>
+
+                {/* Search Input and Back Button */}
+                <Animated.View style={[styles.openWrap, { opacity: inputOpacity }]}>
+
+                    <View style={styles.inputWrapOpen}>
+                        <TextInput
+                            ref={inputRef}
+                            value={query}
+                            onChangeText={setQuery}
+                            placeholder={'Search...'}
+                            placeholderTextColor={colors.white2}
+                            style={styles.inputOpen}
+                            returnKeyType="search"
+                            accessible
+                            accessibilityLabel="Search input"
+                            autoCorrect={false}
+                            autoCapitalize="none"
+                            underlineColorAndroid="transparent"
+                            clearButtonMode="never"
+                        />
+                    </View>
+
+                    <TouchableOpacity
+                        onPress={() => {
+                            setOpen(false);
+                            setQuery('');
+                        }}
+                        style={styles.backButton}
+                        accessibilityRole="button"
+                        accessibilityLabel="Close search"
+                    >
+                        <Icon name="close" size={fonts.size.xl} color={colors.white} />
+                    </TouchableOpacity>
+
+
+                </Animated.View>
 
             </Animated.View>
 
-
-            <Animated.View style={[styles.openWrap, { opacity: inputOpacity }]}>
-
-                <View style={styles.inputWrapOpen}>
-                    <TextInput
-                        ref={inputRef}
-                        value={query}
-                        onChangeText={setQuery}
-                        placeholder={'Search...'}
-                        placeholderTextColor={colors.white2}
-                        style={styles.inputOpen}
-                        returnKeyType="search"
-                        accessible
-                        accessibilityLabel="Search input"
-                        autoCorrect={false}
-                        autoCapitalize="none"
-                        underlineColorAndroid="transparent"
-                        clearButtonMode="never"
-                    />
+            {/* Movie Search Results */}
+            {movies.length > 0 && (
+                <View style={styles.searchResultsContainer}>
+                    <MovieGallery title={"Movie"} data={movies} />
                 </View>
+            )}
 
-                <TouchableOpacity
-                    onPress={() => {
-                        setOpen(false);
-                        setQuery('');
-                    }}
-                    style={styles.backButton}
-                    accessibilityRole="button"
-                    accessibilityLabel="Close search"
-                >
-                    <Icon name="close" size={fonts.size.xl} color={colors.white} />
-                </TouchableOpacity>
+            {/* Actor Search Results */}
+            {actors.length > 0 && (
+                <View style={styles.searchResultsContainer}>
+                    <MovieGallery title={"Actor"} data={actors} />
+                </View>
+            )}
 
-            </Animated.View>
+        </View>
 
-        </Animated.View>
     );
 };
 
@@ -146,11 +187,15 @@ const styles = StyleSheet.create({
         paddingRight: 6,
     },
     backButton: {
-        marginLeft: 6,
-        marginRight: 6,
+        marginHorizontal: 6,
         padding: 6,
         justifyContent: 'center',
         alignItems: 'center',
+        elevation: 2,
+        backgroundColor: colors.opacityBlack,
+        borderRadius: 10,
+        borderColor: colors.grey,
+        borderWidth: 0.75,
     },
     inputWrapOpen: {
         flex: 1,
@@ -160,6 +205,8 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         paddingHorizontal: 8,
         paddingVertical: 7,
+        borderColor: colors.grey,
+        borderWidth: 0.75,
     },
     inputOpen: {
         flex: 1,
@@ -168,6 +215,14 @@ const styles = StyleSheet.create({
         paddingVertical: 0,
         marginLeft: 6,
     },
+    searchResultsContainer: {
+        transform: [{ scale: 0.8 }],
+        backgroundColor: colors.opacityBlack,
+        outlineColor: colors.grey,
+        outlineWidth: 4,
+        borderRadius: 10,
+        margin: -20,
+    },    
 });
 
 export default SearchBarToggle;

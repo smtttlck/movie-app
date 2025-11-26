@@ -1,13 +1,19 @@
-import { Image, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native'
-import { globalStyles } from '../styles/globalStyles'
-import { colors, fonts } from '../constants'
-import MiniCard from './MiniCard'
-import BackButton from './BackButton'
+import { Image, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { globalStyles } from '../styles/globalStyles';
+import colors from '../constants/colors';
+import fonts from '../constants/fonts';
+import MiniCard from './MiniCard';
+import BackButton from './BackButton';
 import { FontAwesome as Icon } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native'
-import { ratingFormatter } from '../utils/helpers'
+import { useNavigation } from '@react-navigation/native';
+import { ratingFormatter, youtubeIdExtractor } from '../utils/helpers';
+import { useState } from 'react';
+import VideoModal from './VideoModal';
 
 const MovieDetail = ({ posterPath, movie }) => {
+
+    // modal visibility state
+    const [modalVisible, setModalVisible] = useState(false);
 
     // navigation hook
     const navigation = useNavigation();
@@ -16,6 +22,13 @@ const MovieDetail = ({ posterPath, movie }) => {
 
     return (
         <View>
+
+            <VideoModal
+                videoId={youtubeIdExtractor(movie.trailer_url)}
+                visible={modalVisible}
+                onClose={() => setModalVisible(false)}
+            />
+
             <BackButton />
 
             <ScrollView style={styles.container}>
@@ -51,9 +64,13 @@ const MovieDetail = ({ posterPath, movie }) => {
                         ))}
                     </View>
 
-                    <Pressable style={styles.trailerButton}>
+                    <Pressable 
+                        style={styles.trailerButton}
+                        onPress={() => setModalVisible(true)}
+                    >
                         <Text style={styles.buttonText}>
-                            <Icon name="play" size={fonts.size.md} color={colors.white} />  Watch Trailer
+                            <Icon name="play" size={fonts.size.md} color={colors.white} />  
+                            Watch Trailer
                         </Text>
                     </Pressable>
 

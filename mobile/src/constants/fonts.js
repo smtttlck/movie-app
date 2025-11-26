@@ -1,6 +1,4 @@
 export default {
-  regular: 'Roboto-Regular',
-  bold: 'Roboto-Bold',
   size: {
     xsm: 12,
     sm: 14,

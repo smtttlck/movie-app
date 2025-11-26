@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import * as api from '../api/api';
 import { UPLOAD_BASE_URL } from '@env';
 import { MovieDetail } from '../components';
+import Loading from '../components/Loading';
 
 const MovieScreen = ({ route }) => {
 
@@ -28,11 +29,11 @@ const MovieScreen = ({ route }) => {
         <View style={globalStyles.container}>
 
             {movie ? (
-                <MovieDetail 
-                    posterPath={posterPath} 
-                    movie={movie} 
+                <MovieDetail
+                    posterPath={posterPath}
+                    movie={movie}
                 />
-            ) : null}
+            ) : <Loading size='100' />}
 
         </View>
     )

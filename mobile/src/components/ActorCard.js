@@ -1,7 +1,8 @@
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Image, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { imgPathConverter } from '../utils/helpers';
 import { useNavigation } from '@react-navigation/native';
-import { colors, fonts } from '../constants';
+import colors from '../constants/colors';
+import fonts from '../constants/fonts';
 
 const ActorCard = ({ id, name, img_path }) => {
 
@@ -46,7 +47,7 @@ const styles = StyleSheet.create({
         borderWidth: 0.5,
     },
     name: {
-        color: '#fff',
+        color: colors.white,
         textAlign: 'center',
         fontWeight: fonts.weight.bold,
         fontSize: fonts.size.sm,

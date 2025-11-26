@@ -7,27 +7,30 @@ const Stack = createNativeStackNavigator();
 
 // root navigation file
 const RootNavigation = () => {
-    return (    <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
+  return (<NavigationContainer>
+    <Stack.Navigator screenOptions={{
+      headerShown: false,
+      animation: 'slide_from_right',
+    }}>
 
-        {/* screens with tabs */}
-        <Stack.Screen name="MainTabs" component={TabNavigator} />
+      {/* screens with tabs */}
+      <Stack.Screen name="MainTabs" component={TabNavigator} />
 
-        {/* other screens (isTab: false) */}
-        {routes
-          .filter(route => !route.isTab)
-          .map(route => (
-            <Stack.Screen
-              key={route.name}
-              name={route.name}
-              component={route.component}
-            />
-          ))}
+      {/* other screens (isTab: false) */}
+      {routes
+        .filter(route => !route.isTab)
+        .map(route => (
+          <Stack.Screen
+            key={route.name}
+            name={route.name}
+            component={route.component}
+          />
+        ))}
 
-      </Stack.Navigator>
-    </NavigationContainer>
+    </Stack.Navigator>
+  </NavigationContainer>
 
-    )
+  )
 }
 
 export default RootNavigation;

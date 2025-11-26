@@ -2,8 +2,8 @@ import React, { useCallback } from 'react';
 import { View, FlatList, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import MovieCard from './MovieCard';
 import { globalStyles } from '../styles/globalStyles';
-import { colors } from '../constants';
 import ActorCard from './ActorCard';
+import Loading from './Loading';
 
 const MovieGallery = ({ title, data = [], onViewAll }) => {
 
@@ -55,7 +55,10 @@ const MovieGallery = ({ title, data = [], onViewAll }) => {
                 contentContainerStyle={styles.listContent}
                 ListEmptyComponent={() => (
                     <View style={styles.emptyWrap}>
-                        <Text style={styles.emptyText}>No items</Text>
+                        <Loading size='50' />
+                        <Loading size='50' />
+                        <Loading size='50' />
+                        <Loading size='50' />
                     </View>
                 )}
                 initialNumToRender={5}
@@ -87,11 +90,12 @@ const styles = StyleSheet.create({
         marginRight: 15,
     },
     emptyWrap: {
-        paddingHorizontal: 12,
-        paddingVertical: 16,
-    },
-    emptyText: {
-        color: colors.white2,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: 10,
+        paddingHorizontal: 25,
+        paddingVertical: 45,
     },
 });
 

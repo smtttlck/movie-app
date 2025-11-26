@@ -4,6 +4,7 @@ import { globalStyles } from '../styles/globalStyles';
 import * as api from '../api/api';
 import { UPLOAD_BASE_URL } from '@env';
 import { ActorDetail } from '../components';
+import Loading from '../components/Loading';
 
 const ActorScreen = ({ route }) => {
 
@@ -37,7 +38,7 @@ const ActorScreen = ({ route }) => {
                     actor={actor}
                     movies={movies}
                 />
-            ) : null}
+            ) : <Loading size='100' />}
 
         </View>
     )

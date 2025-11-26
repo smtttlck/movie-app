@@ -1,5 +1,6 @@
 import { View, Text, ImageBackground, StyleSheet, TouchableOpacity } from 'react-native';
-import { colors, fonts } from '../constants';
+import colors from '../constants/colors';
+import fonts from '../constants/fonts';
 import { useNavigation } from '@react-navigation/native';
 import { globalStyles } from '../styles/globalStyles';
 import { FontAwesome as Icon } from '@expo/vector-icons';

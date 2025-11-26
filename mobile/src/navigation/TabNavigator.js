@@ -1,7 +1,7 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons  as Icon } from '@expo/vector-icons';
 import { routes } from "../constants/routes";
-import { colors } from '../constants';
+import colors from '../constants/colors';
 import { iconNameConverter } from '../utils/helpers';
 
 const Tab = createBottomTabNavigator();

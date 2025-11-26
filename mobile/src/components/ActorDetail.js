@@ -3,7 +3,8 @@ import BackButton from './BackButton';
 import { globalStyles } from '../styles/globalStyles';
 import MiniCard from './MiniCard';
 import { useNavigation } from '@react-navigation/native';
-import { colors, fonts } from '../constants';
+import colors from '../constants/colors';
+import fonts from '../constants/fonts';
 import { FontAwesome6 as Icon } from '@expo/vector-icons/';
 
 const ActorDetail = ({ imgPath, actor, movies }) => {

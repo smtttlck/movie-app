@@ -43,3 +43,6 @@ yarn-error.*
 
 # test assets
 /assets/test_assets
+
+# api info
+/src/api/apiInfo.txt

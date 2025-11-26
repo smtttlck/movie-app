@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
-import { colors, fonts } from '../constants';
+import colors from '../constants/colors';
+import fonts from '../constants/fonts';
 import { FontAwesome as Icon } from '@expo/vector-icons';
 import * as api from '../api/api';
 import MovieGallery from './MovieGallery';
@@ -10,6 +11,7 @@ import {
     StyleSheet,
     Animated,
     Easing,
+    Keyboard,
 } from 'react-native';
 
 const BUTTON_SIZE = 46;
@@ -18,7 +20,9 @@ const ANIM_DURATION = 180;
 const SearchBarToggle = ({ }) => {
 
     const [open, setOpen] = useState(false);
-    const [query, setQuery] = useState('');
+    const [query, setQuery] = useState(''); // current input value
+    const [debouncedQuery, setDebouncedQuery] = useState(''); // for debouncing input
+    
     const anim = useRef(new Animated.Value(0)).current;
     const inputRef = useRef(null);
 
@@ -26,7 +30,7 @@ const SearchBarToggle = ({ }) => {
     const [movies, setMovies] = useState([]);
     const [actors, setActors] = useState([]);
 
-    useEffect(() => {
+    useEffect(() => { // animate open/close
         Animated.timing(anim, {
             toValue: open ? 1 : 0,
             duration: ANIM_DURATION,
@@ -37,19 +41,30 @@ const SearchBarToggle = ({ }) => {
         });
     }, [open, anim]);
 
-    useEffect(() => {
-        if (query.length < 3) {
+    useEffect(() => { // debounce input
+        if(query.length < 3) {
+            setDebouncedQuery('');
+            return;
+        }
+        const handler = setTimeout(() => {
+            setDebouncedQuery(query);
+        }, 500);
+        return () => clearTimeout(handler);
+    }, [query]);
+
+    useEffect(() => { // fetch search results
+        if (debouncedQuery === '') {
             // reset search results when query is cleared
             setMovies([]);
             setActors([]);
         } else {
             // fetch search results
-            api.fetchData("getMovie", `name=${query}&page=1&pageSize=6`)
+            api.fetchData("getMovie", `name=${debouncedQuery}&page=1&pageSize=6`)
                 .then(movies => setMovies(movies.data));
-            api.fetchData("getActor", `name=${query}&page=1&pageSize=6`)
+            api.fetchData("getActor", `name=${debouncedQuery}&page=1&pageSize=6`)
                 .then(actors => setActors(actors.data));
         }
-    }, [query])
+    }, [debouncedQuery]);
 
     const containerWidth = anim.interpolate({
         inputRange: [0, 1],
@@ -126,6 +141,7 @@ const SearchBarToggle = ({ }) => {
                         onPress={() => {
                             setOpen(false);
                             setQuery('');
+                            Keyboard.dismiss();
                         }}
                         style={styles.backButton}
                         accessibilityRole="button"

@@ -1,7 +1,8 @@
 import { useNavigation } from '@react-navigation/native';
 import { StyleSheet, TouchableOpacity } from 'react-native';
 import { Ionicons as Icon } from '@expo/vector-icons';
-import { colors, fonts } from '../constants';
+import colors from '../constants/colors';
+import fonts from '../constants/fonts';
 
 const BackButton = () => {
 

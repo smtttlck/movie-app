@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet, Dimensions, View } from 'react-native';
 import MovieCard from './MovieCard';
 import Animated, {
     useSharedValue,
@@ -7,6 +7,7 @@ import Animated, {
     useAnimatedStyle,
     interpolate,
 } from 'react-native-reanimated';
+import Loading from './Loading';
 
 // fixed card width and spacing between cards
 const CARD_WIDTH = 250;
@@ -66,14 +67,22 @@ const MovieCarousel = ({ data = [] }) => {
                 onScroll={scrollHandler}
                 scrollEventThrottle={16}
             >
-                {data.map((item, index) => (
-                    <CarouselItem
-                        key={item?.id != null ? String(item.id) : String(index)}
-                        item={item}
-                        index={index}
-                        scrollX={scrollX}
-                    />
-                ))}
+                {
+                    (data.length > 0) ? (
+                        data.map((item, index) => (
+                            <CarouselItem
+                                key={item?.id != null ? String(item.id) : String(index)}
+                                item={item}
+                                index={index}
+                                scrollX={scrollX}
+                            />
+                        ))
+                    ) : (
+                        <View style={styles.emptyWrap}>
+                            <Loading size='100' />
+                        </View>
+                    )
+                }
             </Animated.ScrollView>
         </Animated.View>
     );
@@ -83,6 +92,14 @@ const styles = StyleSheet.create({
     cardWrapper: {
         width: CARD_WIDTH,
         marginHorizontal: ITEM_SPACING / 2,
+    },
+    emptyWrap: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        gap: 10,
+        paddingHorizontal: 25,
+        paddingVertical: 75,
     },
 });
 

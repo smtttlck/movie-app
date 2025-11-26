@@ -1,6 +1,7 @@
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import { colors, fonts } from '../constants'
-import { imgPathConverter } from '../utils/helpers'
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import colors from '../constants/colors';
+import fonts from '../constants/fonts';
+import { imgPathConverter } from '../utils/helpers';
 
 const MiniCard = ({ actor, onPressFnc }) => {
 
